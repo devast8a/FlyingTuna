@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlyingTuna", "FlyingTuna\FlyingTuna.csproj", "{D912D670-3E4D-4587-A77E-E96CF5948CE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlyingTuna.UnitTests", "FlyingTuna.UnitTests\FlyingTuna.UnitTests.csproj", "{B241A7A5-E2C6-4F74-9FE9-D016B298FB39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F0D3C951-DD9C-496B-AB82-302EB4E3B1CC}"
+	ProjectSection(SolutionItems) = preProject
+		FlyingTuna.vsmdi = FlyingTuna.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = FlyingTuna.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D912D670-3E4D-4587-A77E-E96CF5948CE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D912D670-3E4D-4587-A77E-E96CF5948CE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D912D670-3E4D-4587-A77E-E96CF5948CE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D912D670-3E4D-4587-A77E-E96CF5948CE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B241A7A5-E2C6-4F74-9FE9-D016B298FB39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B241A7A5-E2C6-4F74-9FE9-D016B298FB39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B241A7A5-E2C6-4F74-9FE9-D016B298FB39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B241A7A5-E2C6-4F74-9FE9-D016B298FB39}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

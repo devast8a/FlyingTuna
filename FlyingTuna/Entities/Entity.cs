@@ -1,0 +1,112 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using FlyingTuna.Components;
+using FlyingTuna.MPI;
+using FlyingTuna.Networking;
+using FlyingTuna.Networking.Packets;
+
+namespace FlyingTuna.Entities
+{
+    public class Entity : IMessageListener
+    {
+        private readonly Dictionary<Type, ComponentListener> _listeners = new Dictionary<Type, ComponentListener>();
+        private readonly Dictionary<Type, Component> _components = new Dictionary<Type, Component>();
+
+        private readonly ComponentFactory _componentFactory;
+
+        public readonly IHost Host;
+        public readonly ID Identifier;
+        public readonly EntityType Type;
+
+        public Entity(ComponentFactory componentFactory, IHost host, ID identifier, EntityType type)
+        {
+            _componentFactory = componentFactory;
+            Host = host;
+            Identifier=identifier;
+            Type=type;
+        }
+
+        public T Add<T>() where T : Component
+        {
+            var component = _componentFactory.GetComponent(typeof(T));
+            _components.Add(component.GetType(), component);
+
+            foreach(var listener in component.Type.Listeners)
+            {
+                _listeners.Add(listener.Key, new ComponentListener(component, listener.Value));
+            }
+
+            foreach(var dep in component.Type.Dependancies)
+            {
+                Component value;
+
+                if(!_components.TryGetValue(dep.Key, out value))
+                {
+                    value = _componentFactory.GetComponent(dep.Key);
+                    _components.Add(dep.Key, value);
+                }
+
+                dep.Value.Set(component, value);
+            }
+
+            foreach(var svc in component.Type.Services)
+            {
+                svc.Value.Set(component, Host.ServiceManager.GetProvider(svc.Value.Type));
+            }
+
+            component.ComponentParent = this;
+
+            return (T)component;
+        }
+
+        public T Get<T>() where T : Component
+        {
+            Component value;
+            return _components.TryGetValue(typeof(T), out value) ? (T)value : null;
+        }
+
+        public void SendMessage(Message message)
+        {
+            ComponentListener value;
+            if(!_listeners.TryGetValue(message.GetType(), out value))
+            {
+                return;
+            }
+
+            value.Listener.MethodInfo.Invoke(value.Component, new object[] { this, message });
+        }
+
+        public void SendRemoteMessage(Message message)
+        {
+            if(_connections.Count == 0)
+            {
+                return;
+            }
+
+            var packet = new EntityMessage(Identifier.IdentifierNumber, message);
+
+            foreach(var con in _connections)
+            {
+                con.WriteData(packet);
+            }
+        }
+
+        /// <summary>
+        /// Sends a message locally and remotely at the same time
+        /// </summary>
+        /// <param name="message">The message to send</param>
+        public void BroadcastMessage(Message message)
+        {
+            SendMessage(message);
+            SendRemoteMessage(message);
+        }
+
+        readonly List<Connection> _connections = new List<Connection>(); 
+        public void SendTo(Connection connection)
+        {
+            _connections.Add(connection);
+            connection.WriteData(new EntityNew(Type, Identifier.IdentifierNumber, EntityNewFlags.None));
+        }
+    }
+}
