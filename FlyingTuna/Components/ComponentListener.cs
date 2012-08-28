@@ -16,5 +16,10 @@ namespace FlyingTuna.Components
             Component=component;
             Listener=listener;
         }
+
+        public void Invoke(IMessageSender sender, Message message)
+        {
+            Listener.Invoke(Component, sender, message);
+        }
     }
 }

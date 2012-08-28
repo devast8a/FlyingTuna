@@ -8,7 +8,7 @@ using FlyingTuna.Networking.Packets;
 
 namespace FlyingTuna.Entities
 {
-    public class Entity : IMessageListener
+    public class Entity
     {
         private readonly Dictionary<Type, ComponentListener> _listeners = new Dictionary<Type, ComponentListener>();
         private readonly Dictionary<Type, Component> _components = new Dictionary<Type, Component>();
@@ -18,6 +18,7 @@ namespace FlyingTuna.Entities
         public readonly IHost Host;
         public readonly ID Identifier;
         public readonly EntityType Type;
+        public readonly IMessageSender LocalSender;
 
         public Entity(ComponentFactory componentFactory, IHost host, ID identifier, EntityType type)
         {
@@ -25,6 +26,8 @@ namespace FlyingTuna.Entities
             Host = host;
             Identifier=identifier;
             Type=type;
+
+            LocalSender = host.ServiceManager.GetProvider<IMessageSender>();
         }
 
         public T Add<T>() where T : Component
@@ -68,13 +71,19 @@ namespace FlyingTuna.Entities
 
         public void SendMessage(Message message)
         {
+            SendMessageAs(LocalSender, message);
+        }
+
+        public void SendMessageAs(IMessageSender sender, Message message)
+        {
+
             ComponentListener value;
-            if(!_listeners.TryGetValue(message.GetType(), out value))
+            if (!_listeners.TryGetValue(message.GetType(), out value))
             {
                 return;
             }
 
-            value.Listener.MethodInfo.Invoke(value.Component, new object[] { this, message });
+            value.Invoke(sender, message);
         }
 
         public void SendRemoteMessage(Message message)
@@ -84,7 +93,7 @@ namespace FlyingTuna.Entities
                 return;
             }
 
-            var packet = new EntityMessage(Identifier.IdentifierNumber, message);
+            var packet = new EntityMessage(Host, Identifier.IdentifierNumber, message);
 
             foreach(var con in _connections)
             {

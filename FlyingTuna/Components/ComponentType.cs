@@ -80,12 +80,34 @@ namespace FlyingTuna.Components
         {
             var param = method.GetParameters();
 
-            if (param.Length != 2)
+            if (param.Length == 1)
             {
-                throw new Exception("Bind Error");
+                var type = param[0].ParameterType;
+                if(typeof(Message).IsAssignableFrom(type))
+                {
+                    return new ListenerMessage(type, method);
+                }
+
+                throw new Exception();
             }
 
-            return new Listener(param[1].ParameterType, method);
+            if(param.Length == 2)
+            {
+                if(param[0].ParameterType != typeof(IMessageSender))
+                {
+                    throw new Exception();
+                }
+
+                var type = param[1].ParameterType;
+                if (typeof(Message).IsAssignableFrom(type))
+                {
+                    return new ListenerMessage(type, method);
+                }
+
+                return new ListenerMulti(type, method);
+            }
+
+            throw new Exception();
         }
     }
 }

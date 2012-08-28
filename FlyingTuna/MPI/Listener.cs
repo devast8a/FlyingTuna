@@ -3,9 +3,9 @@ using System.Reflection;
 
 namespace FlyingTuna.MPI
 {
-    public struct Listener
+    public abstract class Listener
     {
-        public Listener(Type bindType, MethodInfo methodInfo)
+        protected Listener(Type bindType, MethodInfo methodInfo)
         {
             MethodInfo=methodInfo;
             BindType=bindType;
@@ -13,5 +13,7 @@ namespace FlyingTuna.MPI
 
         public readonly MethodInfo MethodInfo;
         public readonly Type BindType;
+
+        public abstract void Invoke(object target, IMessageSender sender, Message message);
     }
 }
