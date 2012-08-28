@@ -7,7 +7,12 @@ namespace FlyingTuna.Reflection
     {
         public static T GetCustomAttributeOrNull<T>(this ICustomAttributeProvider provider) where T : Attribute
         {
-            var attributes = provider.GetCustomAttributes(typeof(T), true);
+            return provider.GetCustomAttributeOrNull<T>(true);
+        }
+
+        public static T GetCustomAttributeOrNull<T>(this ICustomAttributeProvider provider, bool inherit) where T : Attribute
+        {
+            var attributes = provider.GetCustomAttributes(typeof(T), inherit);
             
             if(attributes.Length != 1)
             {

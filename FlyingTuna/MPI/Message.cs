@@ -14,6 +14,7 @@ namespace FlyingTuna.MPI
             Console.WriteLine("Message created: " + GetType().Name);
         }
 
+        [NonSerialized]
         public ID Identifier;
     }
 }

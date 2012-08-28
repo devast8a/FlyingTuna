@@ -14,7 +14,7 @@ namespace FlyingTuna
 
         public static implicit operator ID(int identifier)
         {
-            return new ID(){IdentifierNumber = identifier};
+            return new ID {IdentifierNumber = identifier};
         }
     }
 }

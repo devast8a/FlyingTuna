@@ -61,12 +61,17 @@
     <Compile Include="Graphics\Primitives.cs" />
     <Compile Include="HasIdentifier.cs" />
     <Compile Include="IHost.cs" />
+    <Compile Include="LinqExpSerializer.cs" />
+    <Compile Include="MPI\ListenerMessage.cs" />
     <Compile Include="MPI\ErrorMessage.cs" />
+    <Compile Include="MPI\IHasMetadata.cs" />
     <Compile Include="MPI\IMessageListener.cs" />
     <Compile Include="MPI\IMessageSender.cs" />
     <Compile Include="MPI\Listener.cs" />
     <Compile Include="Components\ListenerAttribute.cs" />
+    <Compile Include="MPI\ListenerMulti.cs" />
     <Compile Include="MPI\Message.cs" />
+    <Compile Include="MsgDes.cs" />
     <Compile Include="Networking\Connection.cs" />
     <Compile Include="Networking\PacketNumbers.cs" />
     <Compile Include="Networking\Packets\EntityMessage.cs" />
@@ -76,6 +81,7 @@
     <Compile Include="Networking\Processors\EntityNewProcessor.cs" />
     <Compile Include="Networking\Processors\IPacketProcessor.cs" />
     <Compile Include="Reflection\GetCustomAttributeExtension.cs" />
+    <Compile Include="SerializeOptionsAttribute.cs" />
     <Compile Include="ServiceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ID.cs" />

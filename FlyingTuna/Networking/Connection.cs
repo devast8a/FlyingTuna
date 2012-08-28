@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
+using FlyingTuna.MPI;
 using FlyingTuna.Networking.Packets;
 using FlyingTuna.Networking.Processors;
 
 namespace FlyingTuna.Networking
 {
-    public class Connection
+    public class Connection : IMessageSender
     {
         private readonly IPacketProcessor[] _packetProcessors;
 
@@ -123,9 +124,19 @@ namespace FlyingTuna.Networking
             return _metadata;
         }
 
+        public void Error<T, TError>(T message, TError error) where T : Message where TError : ErrorMessage
+        {
+            throw new NotImplementedException();
+        }
+
         public void Disconnect(string genericGamefull)
         {
             _netStream.Disconnect(false);
+        }
+
+        public void SendMessage(Message message)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -8,12 +8,12 @@ namespace FlyingTuna.Networking.Processors
 {
     public class EntityMessageProcessor : IPacketProcessor
     {
-        private readonly FactoryManager _factory;
+        private readonly MsgDes _msgd;
         private readonly IEntityCollection _collection;
 
         public EntityMessageProcessor(IHost host, IEntityCollection collection)
         {
-            _factory = host.FactoryManager;
+            _msgd = host.ServiceManager.GetProvider<MsgDes>();
             _collection=collection;
         }
 
@@ -35,11 +35,11 @@ namespace FlyingTuna.Networking.Processors
             Console.WriteLine("Received message from remote side.");
 
             // We need to deserialize the message
-            var message = _factory.CreateObject<Message>(messageId);
+            var msg = _msgd.GetMsg(messageId, reader);
 
 
             // Send the message
-            ent.SendMessage(message);
+            ent.SendMessageAs(c, (Message) msg);
         }
     }
 }
