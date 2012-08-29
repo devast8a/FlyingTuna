@@ -8,8 +8,6 @@ namespace FlyingTuna.MPI
 {
     public interface IMessageSender : IMessageListener, IHasMetadata
     {
-        void Error<T, TError>(T message, TError error)
-            where T : Message
-            where TError : ErrorMessage;
+        void Error(Message message, ErrorMessage error);
     }
 }

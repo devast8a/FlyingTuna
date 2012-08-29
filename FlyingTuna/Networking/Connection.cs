@@ -75,6 +75,11 @@ namespace FlyingTuna.Networking
                 // Reset stream position and start again
                 _readStream.Position = 0;
             }
+            if(!_netStream.Connected)
+            {
+                Console.WriteLine("Lost connection");
+                Environment.Exit(1);
+            }
         }
 
         public int DataToSend { get; private set; }
@@ -124,7 +129,7 @@ namespace FlyingTuna.Networking
             return _metadata;
         }
 
-        public void Error<T, TError>(T message, TError error) where T : Message where TError : ErrorMessage
+        public void Error(Message message, ErrorMessage errorMessage)
         {
             throw new NotImplementedException();
         }
