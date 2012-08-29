@@ -21,7 +21,14 @@ namespace FlyingTuna.Networking.Processors
         public void Process(Connection c, byte[] buffer, short pos, short len)
         {
             var reader = new BinaryReader(new MemoryStream(buffer, pos, len, false));
-            _collection.AddEntity(_factory.CreateObject<Entity>(new ID{IdentifierNumber = reader.ReadInt32()}));
+
+            var id = reader.ReadInt32();
+            var objId = new ID(){IdentifierNumber = reader.ReadInt32() };
+            var ent = _factory.CreateObject<Entity>(objId);
+
+            ent.Identifier.IdentifierNumber = id;
+
+            _collection.AddEntity(ent);
         }
     }
 }
