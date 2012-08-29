@@ -20,6 +20,7 @@ namespace FlyingTuna.Additions.Serialization
 
             _types.Add(typeof(int), "ReadInt32");
             _types.Add(typeof(byte), "ReadByte");
+            _types.Add(typeof(string), "ReadString");
         }
 
         public byte[] Serialize(object obj)
