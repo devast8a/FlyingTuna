@@ -62,6 +62,7 @@ namespace FlyingTuna.Entities
             }
 
             component.ComponentParent = this;
+            component.OnInitialize();
 
             return (T)component;
         }

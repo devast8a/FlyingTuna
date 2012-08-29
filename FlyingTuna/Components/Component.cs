@@ -21,5 +21,7 @@ namespace FlyingTuna.Components
                 _cache.Add(GetType(), Type);
             }
         }
+
+        public virtual void OnInitialize(){}
     }
 }
