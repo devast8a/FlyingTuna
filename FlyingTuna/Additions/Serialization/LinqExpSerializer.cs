@@ -4,11 +4,11 @@ using System.IO;
 using System.Linq.Expressions;
 using FlyingTuna.Reflection;
 
-namespace FlyingTuna
+namespace FlyingTuna.Additions.Serialization
 {
     public class LinqExpSerializer
     {
-        Dictionary<Type, string> _types; 
+        readonly Dictionary<Type, string> _types; 
 
 
         public Dictionary<Type, Func<BinaryReader, object>> Deserializers = new Dictionary<Type, Func<BinaryReader, object>>();

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace FlyingTuna
+namespace FlyingTuna.Additions.Serialization
 {
     public static class SlimSerializer
     {

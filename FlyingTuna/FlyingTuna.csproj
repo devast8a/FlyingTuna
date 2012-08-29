@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Additions\Metadata\Metadata.cs" />
     <Compile Include="Components\Component.cs" />
     <Compile Include="Components\ComponentListener.cs" />
     <Compile Include="Components\ComponentType.cs" />
@@ -59,19 +60,19 @@
     <Compile Include="Factories\LambdaFactory.cs" />
     <Compile Include="Graphics\RenderService.cs" />
     <Compile Include="Graphics\Primitives.cs" />
-    <Compile Include="HasIdentifier.cs" />
+    <Compile Include="Additions\IdenSys\HasIdentifier.cs" />
     <Compile Include="IHost.cs" />
-    <Compile Include="LinqExpSerializer.cs" />
+    <Compile Include="Additions\Serialization\LinqExpSerializer.cs" />
     <Compile Include="MPI\ListenerMessage.cs" />
     <Compile Include="MPI\ErrorMessage.cs" />
-    <Compile Include="MPI\IHasMetadata.cs" />
+    <Compile Include="Additions\Metadata\IHasMetadata.cs" />
     <Compile Include="MPI\IMessageListener.cs" />
     <Compile Include="MPI\IMessageSender.cs" />
     <Compile Include="MPI\Listener.cs" />
     <Compile Include="Components\ListenerAttribute.cs" />
     <Compile Include="MPI\ListenerMulti.cs" />
     <Compile Include="MPI\Message.cs" />
-    <Compile Include="MsgDes.cs" />
+    <Compile Include="Additions\Serialization\MsgDes.cs" />
     <Compile Include="Networking\Connection.cs" />
     <Compile Include="Networking\PacketNumbers.cs" />
     <Compile Include="Networking\Packets\EntityMessage.cs" />
@@ -81,13 +82,12 @@
     <Compile Include="Networking\Processors\EntityNewProcessor.cs" />
     <Compile Include="Networking\Processors\IPacketProcessor.cs" />
     <Compile Include="Reflection\GetCustomAttributeExtension.cs" />
-    <Compile Include="SerializeOptionsAttribute.cs" />
+    <Compile Include="Additions\Serialization\SerializeOptionsAttribute.cs" />
     <Compile Include="ServiceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ID.cs" />
-    <Compile Include="SlimSerializer.cs" />
+    <Compile Include="Additions\IdenSys\ID.cs" />
+    <Compile Include="Additions\Serialization\SlimSerializer.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,6 +1,6 @@
 using System;
 
-namespace FlyingTuna
+namespace FlyingTuna.Additions.Serialization
 {
     public class SerializeOptionsAttribute : Attribute
     {

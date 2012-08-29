@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using FlyingTuna.Additions;
+using FlyingTuna.Additions.IdenSys;
+using FlyingTuna.Additions.Metadata;
 using FlyingTuna.Components;
 using FlyingTuna.MPI;
 using FlyingTuna.Networking;
@@ -8,7 +11,7 @@ using FlyingTuna.Networking.Packets;
 
 namespace FlyingTuna.Entities
 {
-    public class Entity
+    public class Entity : MetadataContainer
     {
         private readonly Dictionary<Type, ComponentListener> _listeners = new Dictionary<Type, ComponentListener>();
         private readonly Dictionary<Type, Component> _components = new Dictionary<Type, Component>();

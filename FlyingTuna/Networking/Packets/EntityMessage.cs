@@ -1,4 +1,5 @@
 using System.IO;
+using FlyingTuna.Additions.Serialization;
 using FlyingTuna.MPI;
 
 namespace FlyingTuna.Networking.Packets

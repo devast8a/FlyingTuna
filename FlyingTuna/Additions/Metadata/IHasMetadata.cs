@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace FlyingTuna.MPI
+namespace FlyingTuna.Additions.Metadata
 {
     public interface IHasMetadata
     {
