@@ -31,18 +31,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
-    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
-    <Reference Include="System" />
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Additions\Input\Backend\XnaMouse.cs" />
+    <Compile Include="Additions\Input\ButtonState.cs" />
+    <Compile Include="Additions\Input\ButtonStateUtil.cs" />
+    <Compile Include="Additions\Input\GameMouseState.cs" />
+    <Compile Include="Additions\Input\MouseEventArgs.cs" />
+    <Compile Include="Additions\Input\SKeys.cs" />
     <Compile Include="Additions\Metadata\Metadata.cs" />
+    <Compile Include="Additions\ResourceCache.cs" />
+    <Compile Include="BN\TextureUtil.cs" />
     <Compile Include="Components\Component.cs" />
     <Compile Include="Components\ComponentListener.cs" />
     <Compile Include="Components\ComponentType.cs" />
@@ -70,6 +79,7 @@
     <Compile Include="MPI\IMessageSender.cs" />
     <Compile Include="MPI\Listener.cs" />
     <Compile Include="Components\ListenerAttribute.cs" />
+    <Compile Include="MPI\ListenerMessageDebugger.cs" />
     <Compile Include="MPI\ListenerMulti.cs" />
     <Compile Include="MPI\Message.cs" />
     <Compile Include="Additions\Serialization\MsgDes.cs" />
@@ -89,6 +99,7 @@
     <Compile Include="Additions\Serialization\SlimSerializer.cs" />
     <Compile Include="Utils\Extensions\DictionaryExtensions.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
