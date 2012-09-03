@@ -135,5 +135,10 @@ namespace FlyingTuna.Entities
             _connections.Add(connection);
             connection.WriteData(new EntityNew(Type, Identifier.IdentifierNumber, EntityNewFlags.None));
         }
+
+        public void NewConnection(Connection connection)
+        {
+            _connections.Add(connection);
+        }
     }
 }

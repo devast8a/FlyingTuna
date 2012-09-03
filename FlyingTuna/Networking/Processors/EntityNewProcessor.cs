@@ -27,6 +27,7 @@ namespace FlyingTuna.Networking.Processors
             var ent = _factory.CreateObject<Entity>(objId);
 
             ent.Identifier.IdentifierNumber = id;
+            ent.NewConnection(c);
 
             _collection.AddEntity(ent);
         }
