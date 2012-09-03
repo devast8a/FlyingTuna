@@ -42,9 +42,24 @@ namespace FlyingTuna.Networking
             _writer = new BinaryWriter(_writeStream);
         }
 
+        private static bool IsConnected(Socket socket)
+        {
+            try
+            {
+                return !(socket.Poll(1, SelectMode.SelectRead) && socket.Available == 0);
+            }
+            catch (SocketException) { return false; }
+        }
+
         public void RecieveData()
         {
-            if (_netStream.Available > 0)
+            if (!IsConnected(_netStream))
+            {
+                Console.WriteLine("Lost connection");
+                _netStream.Disconnect(false);
+            }
+
+            if(_netStream.Available > 0)
             {
                 var total = _netStream.Receive(_readBuffer, 0, _netStream.Available, SocketFlags.None);
 
@@ -74,11 +89,6 @@ namespace FlyingTuna.Networking
 
                 // Reset stream position and start again
                 _readStream.Position = 0;
-            }
-            if(!_netStream.Connected)
-            {
-                Console.WriteLine("Lost connection");
-                Environment.Exit(1);
             }
         }
 
