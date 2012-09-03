@@ -13,11 +13,20 @@ namespace FlyingTuna.Entities
             return Types[typeid];
         }
 
+        int _highestID = 10000;
+
         public void AddEntity(Entity createObject)
         {
             if(OnAddEntity != null)
             {
                 OnAddEntity(createObject);
+            }
+
+            if (createObject.Identifier.IdentifierNumber == 0)
+            {
+                createObject.Identifier.IdentifierNumber = _highestID++;
+            }else if(createObject.Identifier.IdentifierNumber > _highestID){
+                _highestID = createObject.Identifier.IdentifierNumber;
             }
 
             Entities.Add(createObject.Identifier.IdentifierNumber, createObject);
