@@ -33,30 +33,44 @@ namespace FlyingTuna.Entities
             LocalSender = host.ServiceManager.GetProvider<IMessageSender>();
         }
 
+        public Component Add(Type type)
+        {
+            if(!typeof(Component).IsAssignableFrom(type))
+            {
+                throw new Exception();
+            }
+
+            return AddImpl(type);
+        }
+
         public T Add<T>() where T : Component
         {
-            var component = _componentFactory.GetComponent(typeof(T));
+            return (T)AddImpl(typeof(T));
+        }
+
+        private Component AddImpl(Type type)
+        {
+            var component = _componentFactory.GetComponent(type);
             _components.Add(component.GetType(), component);
 
-            foreach(var listener in component.Type.Listeners)
+            foreach (var listener in component.Type.Listeners)
             {
                 _listeners.Add(listener.Key, new ComponentListener(component, listener.Value));
             }
 
-            foreach(var dep in component.Type.Dependancies)
+            foreach (var dep in component.Type.Dependancies)
             {
                 Component value;
 
-                if(!_components.TryGetValue(dep.Key, out value))
+                if (!_components.TryGetValue(dep.Key, out value))
                 {
-                    value = _componentFactory.GetComponent(dep.Key);
-                    _components.Add(dep.Key, value);
+                    value = Add(dep.Key);
                 }
 
                 dep.Value.Set(component, value);
             }
 
-            foreach(var svc in component.Type.Services)
+            foreach (var svc in component.Type.Services)
             {
                 svc.Value.Set(component, Host.ServiceManager.GetProvider(svc.Value.Type));
             }
@@ -64,7 +78,7 @@ namespace FlyingTuna.Entities
             component.ComponentParent = this;
             component.OnInitialize();
 
-            return (T)component;
+            return component;
         }
 
         public T Get<T>() where T : Component
