@@ -5,7 +5,7 @@
         public string Name;
 
         // Temporary name
-        public int IdentifierNumber;
+        public int IdentifierNumber = -1;
 
         public static implicit operator ID(int identifier)
         {
