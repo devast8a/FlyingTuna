@@ -85,7 +85,7 @@ namespace FlyingTuna.Components
                 var type = param[0].ParameterType;
                 if(typeof(Message).IsAssignableFrom(type))
                 {
-                    var m = typeof(ListenerMessageDebugger<>).MakeGenericType(type);
+                    var m = typeof(ListenerMessageDebug<>).MakeGenericType(type);
 
                     return (Listener)Activator.CreateInstance(m, type, method);
                     //return new ListenerMessage(type, method);
@@ -102,12 +102,15 @@ namespace FlyingTuna.Components
                 }
 
                 var type = param[1].ParameterType;
+
                 if (typeof(Message).IsAssignableFrom(type))
                 {
-                    return new ListenerMessage(type, method);
+                    var m = typeof(ListenerMultiDebug<>).MakeGenericType(type);
+
+                    return (Listener)Activator.CreateInstance(m, type, method);
                 }
 
-                return new ListenerMulti(type, method);
+                throw new Exception();
             }
 
             throw new Exception();

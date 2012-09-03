@@ -6,9 +6,9 @@ using System.Text;
 
 namespace FlyingTuna.MPI
 {
-    class ListenerMessageDebugger<T> : Listener where T : Message
+    class ListenerMessageDebug<T> : Listener where T : Message
     {
-        public ListenerMessageDebugger(Type bindType, MethodInfo methodInfo) : base(bindType, methodInfo)
+        public ListenerMessageDebug(Type bindType, MethodInfo methodInfo) : base(bindType, methodInfo)
         {
         }
 

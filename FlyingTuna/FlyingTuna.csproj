@@ -72,6 +72,7 @@
     <Compile Include="Additions\IdenSys\HasIdentifier.cs" />
     <Compile Include="IHost.cs" />
     <Compile Include="Additions\Serialization\LinqExpSerializer.cs" />
+    <Compile Include="MPI\ListenerMultiDebug.cs" />
     <Compile Include="MPI\ListenerMessage.cs" />
     <Compile Include="MPI\ErrorMessage.cs" />
     <Compile Include="Additions\Metadata\IHasMetadata.cs" />
@@ -79,7 +80,7 @@
     <Compile Include="MPI\IMessageSender.cs" />
     <Compile Include="MPI\Listener.cs" />
     <Compile Include="Components\ListenerAttribute.cs" />
-    <Compile Include="MPI\ListenerMessageDebugger.cs" />
+    <Compile Include="MPI\ListenerMessageDebug.cs" />
     <Compile Include="MPI\ListenerMulti.cs" />
     <Compile Include="MPI\Message.cs" />
     <Compile Include="Additions\Serialization\MsgDes.cs" />
