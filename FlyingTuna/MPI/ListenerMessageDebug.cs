@@ -14,6 +14,11 @@ namespace FlyingTuna.MPI
 
         public override void Invoke(object target, IMessageSender sender, Message message)
         {
+            if (!message.NoExtraLogging)
+            {
+                Console.WriteLine("{0} ==> {1}::{2}", message.GetType().Name, MethodInfo.DeclaringType.FullName, MethodInfo.Name);
+            }
+
             var d = (Action<T>)Delegate.CreateDelegate(typeof(Action<T>), target, MethodInfo);
             d((T)message);
         }

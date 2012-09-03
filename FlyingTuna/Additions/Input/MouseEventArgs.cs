@@ -8,7 +8,11 @@ namespace FlyingTuna.Additions.Input
 {
     public class MouseEventArgs : Message
     {
-        public byte NO_CREATE_MSG;
+        public MouseEventArgs()
+        {
+            NoExtraLogging = true;
+        }
+
         public GameMouseState MouseState;
     }
 }
