@@ -33,11 +33,11 @@ namespace FlyingTuna.Networking.Processors
             
             var ent = _collection.GetEntity(entityId);
 
-            Console.WriteLine("Received message from remote side.");
 
             // We need to deserialize the message
             var msg = _msgd.GetMsg(messageId, reader);
 
+            Console.WriteLine("Received {0} message from {1}.", msg.GetType(), c);
 
             // Send the message
             ent.SendMessageAs(c, (Message) msg);

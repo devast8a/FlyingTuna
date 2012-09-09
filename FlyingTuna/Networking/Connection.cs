@@ -74,13 +74,15 @@ namespace FlyingTuna.Networking
                     {
                         short len = _reader.ReadInt16();
 
-                        Console.WriteLine("--> #: {0} Length: {1}", packet, len);
+                        Console.WriteLine("{2} --> #: {0} Length: {1}", packet, len, _netStream.RemoteEndPoint);
                         for (int i = (int)_readStream.Position; i < _readStream.Position + len; i++)
                         {
                             Console.Write("{0:X2} ", _readBuffer[i]);
                         }
                         Console.WriteLine();
                         
+                        Console.WriteLine("Packet will be processed by: " + _packetProcessors[packet]);
+
                         _packetProcessors[packet].Process(this, _readBuffer, (short)_readStream.Position, len);
 
                         _readStream.Position += len;
@@ -103,7 +105,7 @@ namespace FlyingTuna.Networking
 
             var buf = ms.GetBuffer();
 
-            Console.WriteLine("<-- #: {0} Length: {1}", packet.Number, len);
+            Console.WriteLine("{2} <-- #: {0} Length: {1}", packet.Number, len, _netStream.RemoteEndPoint);
             for (int i = 0; i < len; i++)
             {
                 Console.Write("{0:X2} ", buf[i]);
