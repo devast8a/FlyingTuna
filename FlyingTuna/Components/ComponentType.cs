@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using FlyingTuna.Additions.VarRefs;
 using FlyingTuna.MPI;
 using FlyingTuna.Reflection;
-using ML.PCL;
 
 namespace FlyingTuna.Components
 {
@@ -12,11 +12,47 @@ namespace FlyingTuna.Components
         public readonly Dictionary<Type, Listener> Listeners = new Dictionary<Type, Listener>();
         public readonly Dictionary<Type, Dependancy> Dependancies = new Dictionary<Type, Dependancy>();
         public readonly Dictionary<Type, Service> Services = new Dictionary<Type, Service>(); 
+        public readonly Dictionary<string, VariableReferenceC> Variables = new Dictionary<string, VariableReferenceC>();
 
         public ComponentType(Type type)
         {
+            //DEBUG
+            if(!typeof(Component).IsAssignableFrom(type))
+            {
+                throw new Exception("Invalid component type");
+            }
+
             ProcessMethods(type);
             ProcessProperties(type);
+            ProcessFields(type);
+        }
+
+        private static readonly Dictionary<Type, ComponentType> Cache = new Dictionary<Type, ComponentType>();
+        public static ComponentType Get(Type type)
+        {
+            ComponentType value;
+
+            if (!Cache.TryGetValue(type, out value))
+            {
+                value = new ComponentType(type);
+                Cache.Add(type, value);
+            }
+
+            return value;
+        }
+
+        private void ProcessFields(Type type)
+        {
+            foreach(var field in type.GetFields())
+            {
+                var ftype = field.FieldType;
+
+                if(ftype.IsGenericType &&
+                    ftype.GetGenericTypeDefinition() == typeof(VarRef<>))
+                {
+                    Variables.Add(field.Name, new VariableReferenceC(){Field = field, Name = field.Name, Type = ftype.GetGenericArguments()[0]});
+                }
+            }
         }
 
         private void ProcessProperties(Type type)

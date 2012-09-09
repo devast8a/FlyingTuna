@@ -4,6 +4,7 @@ using System.Diagnostics;
 using FlyingTuna.Additions;
 using FlyingTuna.Additions.IdenSys;
 using FlyingTuna.Additions.Metadata;
+using FlyingTuna.Additions.VarRefs;
 using FlyingTuna.Components;
 using FlyingTuna.MPI;
 using FlyingTuna.Networking;
@@ -15,6 +16,7 @@ namespace FlyingTuna.Entities
     {
         private readonly Dictionary<Type, ComponentListener> _listeners = new Dictionary<Type, ComponentListener>();
         private readonly Dictionary<Type, Component> _components = new Dictionary<Type, Component>();
+        public readonly VariableContainer Container = new VariableContainer();
 
         private readonly ComponentFactory _componentFactory;
 
@@ -73,6 +75,11 @@ namespace FlyingTuna.Entities
             foreach (var svc in component.Type.Services)
             {
                 svc.Value.Set(component, Host.ServiceManager.GetProvider(svc.Value.Type));
+            }
+
+            foreach (var variable in component.Type.Variables)
+            {
+                variable.Value.Set(component, Container.GetOrCreate(variable.Key, variable.Value.Type));
             }
 
             component.ComponentParent = this;

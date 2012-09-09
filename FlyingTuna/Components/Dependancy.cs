@@ -1,8 +1,7 @@
 using System;
 using System.Reflection;
-using FlyingTuna.Components;
 
-namespace ML.PCL
+namespace FlyingTuna.Components
 {
     public class Dependancy
     {

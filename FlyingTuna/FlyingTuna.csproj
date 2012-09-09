@@ -51,6 +51,10 @@
     <Compile Include="Additions\Input\SKeys.cs" />
     <Compile Include="Additions\Metadata\Metadata.cs" />
     <Compile Include="Additions\ResourceCache.cs" />
+    <Compile Include="Additions\VarRefs\VariableContainer.cs" />
+    <Compile Include="Additions\VarRefs\VariableReference.cs" />
+    <Compile Include="Additions\VarRefs\VariableReferenceC.cs" />
+    <Compile Include="Additions\VarRefs\VarRef.cs" />
     <Compile Include="BN\TextureUtil.cs" />
     <Compile Include="Components\Component.cs" />
     <Compile Include="Components\ComponentListener.cs" />
