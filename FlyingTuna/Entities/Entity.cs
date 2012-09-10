@@ -12,7 +12,7 @@ using FlyingTuna.Networking.Packets;
 
 namespace FlyingTuna.Entities
 {
-    public class Entity : MetadataContainer
+    public class Entity : MetadataContainer, IVariableContainer
     {
         private readonly Dictionary<Type, ComponentListener> _listeners = new Dictionary<Type, ComponentListener>();
         private readonly Dictionary<Type, Component> _components = new Dictionary<Type, Component>();
@@ -146,6 +146,16 @@ namespace FlyingTuna.Entities
         public void NewConnection(Connection connection)
         {
             _connections.Add(connection);
+        }
+
+        public void Overwrite(VariableReference varRef)
+        {
+            Container.Overwrite(varRef);
+
+            foreach(var component in _components)
+            {
+                component.Value.Overwrite(varRef);
+            }
         }
     }
 }

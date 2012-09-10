@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
@@ -51,10 +52,13 @@
     <Compile Include="Additions\Input\SKeys.cs" />
     <Compile Include="Additions\Metadata\Metadata.cs" />
     <Compile Include="Additions\ResourceCache.cs" />
+    <Compile Include="Additions\VarRefs\IVariableContainer.cs" />
+    <Compile Include="Additions\VarRefs\ShallowVarRef.cs" />
     <Compile Include="Additions\VarRefs\VariableContainer.cs" />
     <Compile Include="Additions\VarRefs\VariableReference.cs" />
     <Compile Include="Additions\VarRefs\VariableReferenceC.cs" />
     <Compile Include="Additions\VarRefs\VarRef.cs" />
+    <Compile Include="Additions\VarRefs\VarRefUtil.cs" />
     <Compile Include="BN\TextureUtil.cs" />
     <Compile Include="Components\Component.cs" />
     <Compile Include="Components\ComponentListener.cs" />

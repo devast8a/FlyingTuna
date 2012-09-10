@@ -5,16 +5,33 @@ using System.Text;
 
 namespace FlyingTuna.Additions.VarRefs
 {
-    public class VariableContainer
+    public class VariableContainer : IVariableContainer
     {
+        public VariableContainer(){}
+
+        public VariableContainer(VariableContainer parent)
+        {
+            Import(parent);
+        }
+
+        // Import all 
+        public void Import(VariableContainer parent)
+        {
+            foreach(var variable in parent._variables)
+            {
+                _variables.Add(variable.Key, variable.Value.GetReferenceCopy(parent));
+            }
+        }
+
         private readonly Dictionary<string, VariableReference> _variables = new Dictionary<string, VariableReference>(); 
  
+        // Return a variable reference for the variable requested, create one if it doesn't exist.
         public VariableReference GetOrCreate(string key, Type type)
         {
             VariableReference value;
             if(!_variables.TryGetValue(key, out value))
             {
-                value = Create(key, type);
+                value = VarRefUtil.Create(key, type);
                 _variables.Add(key, value);
             }else
             {
@@ -28,22 +45,19 @@ namespace FlyingTuna.Additions.VarRefs
             return value;
         }
 
-        private VariableReference Create(string name, Type type)
-        {
-            var refType = typeof(VarRef<>).MakeGenericType(type);
-            var e = (VariableReference)Activator.CreateInstance(refType, name, type);
-
-            return e;
-        }
-
         public VarRef<T> GetOrCreate<T>(string name)
         {
             return (VarRef<T>)GetOrCreate(name, typeof(T));
-        } 
+        }
 
         public void Set<T>(string name, T value)
         {
-            GetOrCreate<T>(name).Write(value);
+            GetOrCreate<T>(name).Set(value, this);
+        }
+
+        public void Overwrite(VariableReference varRef)
+        {
+            _variables[varRef.Name] = varRef;
         }
     }
 }

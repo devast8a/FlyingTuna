@@ -4,28 +4,57 @@ namespace FlyingTuna.Additions.VarRefs
 {
     public class VarRef<T> : VariableReference
     {
-        private T _variable;
-
-        public VarRef(string name, Type type) : base(name, type)
+        protected T Variable;
+        
+        public virtual bool ShallowCopy
         {
+            get { return false; }
+        }
+
+        public VarRef(string name) : base(name, typeof(T))
+        {
+            Console.WriteLine("VarRef");
+        }
+
+        public VarRef(string name, T value) : base(name, typeof(T))
+        {
+            Console.WriteLine("VarRef");
+            Variable = value;
         }
 
         public T Value
         {
             get
             {
-                return _variable;
+                return Variable;
             }
         }
 
         public override object GetVariable()
         {
-            return _variable;
+            return Variable;
         }
 
-        public void Write(T value)
+        public override void SetVariable(object variable, IVariableContainer container)
         {
-            _variable = value;
+            Variable = (T)variable;
+        }
+
+        public override VariableReference GetDirectCopy(IVariableContainer container)
+        {
+            return this;
+        }
+
+        public override VariableReference GetReferenceCopy(IVariableContainer container)
+        {
+            var v = new ShallowVarRef<T>(Name, Variable);
+            container.Overwrite(v);
+            return v;
+        }
+
+        public virtual void Set(T value, IVariableContainer container)
+        {
+            Variable = value;
         }
     }
 }
