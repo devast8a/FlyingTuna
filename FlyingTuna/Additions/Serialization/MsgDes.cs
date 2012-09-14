@@ -19,7 +19,6 @@ namespace FlyingTuna.Additions.Serialization
         {
             foreach (var type in types)
             {
-                Console.WriteLine("Generating serializer for: " + type);
                 _serializer.GetSerializer(type);
                 Types.Add(type);
             }
