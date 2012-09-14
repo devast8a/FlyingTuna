@@ -23,7 +23,6 @@ namespace FlyingTuna.Components
             }
 
             ProcessMethods(type);
-            ProcessProperties(type);
             ProcessFields(type);
         }
 
@@ -46,54 +45,49 @@ namespace FlyingTuna.Components
             foreach(var field in type.GetFields())
             {
                 var ftype = field.FieldType;
+                int matches = 0;
 
                 if(ftype.IsGenericType &&
                     ftype.GetGenericTypeDefinition() == typeof(VarRef<>))
                 {
-                    Variables.Add(field.Name, new VariableReferenceC(){Field = field, Name = field.Name, Type = ftype.GetGenericArguments()[0]});
-                }
-            }
-        }
-
-        private void ProcessProperties(Type type)
-        {
-            foreach (var property in type.GetProperties())
-            {
-                int matches = 0;
-
-                var dAttr = property.GetCustomAttributeOrNull<DependOnAttribute>();
-
-                if (dAttr != null)
-                {
-                    var dependancy = MetaGetDependancy(property, dAttr);
-                    Dependancies.Add(dependancy.Type, dependancy);
+                    Variables.Add(field.Name, new VariableReferenceC() { Field = field, Name = field.Name, Type = ftype.GetGenericArguments()[0] });
                     matches++;
                 }
 
-                var sAttr = property.GetCustomAttributeOrNull<UseServiceAttribute>();
+                var serviceAttr = field.GetCustomAttributeOrNull<UseServiceAttribute>();
 
-                if (sAttr != null)
+                if(serviceAttr != null)
                 {
-                    var service = MetaGetService(property, sAttr);
+                    var service = MetaGetService(field, serviceAttr);
                     Services.Add(service.Type, service);
                     matches++;
                 }
 
-                if(matches > 1)
+
+                var dependAttr = field.GetCustomAttributeOrNull<DependOnAttribute>();
+
+                if (dependAttr != null)
+                {
+                    var dependancy = MetaGetDependancy(field, dependAttr);
+                    Dependancies.Add(dependancy.Type, dependancy);
+                    matches++;
+                }
+
+                if (matches > 1)
                 {
                     throw new Exception("Multiple types");
                 }
             }
         }
 
-        private Service MetaGetService(PropertyInfo property, UseServiceAttribute dAttr)
+        private Service MetaGetService(FieldInfo field, UseServiceAttribute dAttr)
         {
-            return new Service(dAttr.Type ?? property.PropertyType, property);
+            return new Service(dAttr.Type ?? field.FieldType, field);
         }
 
-        private Dependancy MetaGetDependancy(PropertyInfo property, DependOnAttribute attribute)
+        private Dependancy MetaGetDependancy(FieldInfo field, DependOnAttribute attribute)
         {
-            return new Dependancy(property.PropertyType, property);
+            return new Dependancy(field.FieldType, field);
         }
 
         private void ProcessMethods(Type type)
@@ -134,7 +128,7 @@ namespace FlyingTuna.Components
             {
                 if(param[0].ParameterType != typeof(IMessageSender))
                 {
-                    throw new Exception();
+                    throw new Exception("Must be a message sender");
                 }
 
                 var type = param[1].ParameterType;
@@ -149,7 +143,7 @@ namespace FlyingTuna.Components
                 throw new Exception();
             }
 
-            throw new Exception();
+            throw new Exception("Can not process listener");
         }
     }
 }

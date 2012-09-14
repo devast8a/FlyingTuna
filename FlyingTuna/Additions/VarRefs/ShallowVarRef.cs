@@ -32,7 +32,7 @@ namespace FlyingTuna.Additions.VarRefs
             GetDirectCopy(container).SetVariable(variable, container);
         }
 
-        public override void Set(T value, IVariableContainer container)
+        public override void Set(IVariableContainer container, T value)
         {
             SetVariable(value, container);
         }

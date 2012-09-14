@@ -52,7 +52,7 @@ namespace FlyingTuna.Additions.VarRefs
             return v;
         }
 
-        public virtual void Set(T value, IVariableContainer container)
+        public virtual void Set(IVariableContainer container, T value)
         {
             Variable = value;
         }

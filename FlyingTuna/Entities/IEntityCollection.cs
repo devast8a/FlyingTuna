@@ -7,6 +7,7 @@ namespace FlyingTuna.Entities
     {
         EntityType Resolve(int typeid);
         void AddEntity(Entity createObject);
+        void RemoveEntity(Entity ent);
 
         event Action<Entity> OnAddEntity;
 

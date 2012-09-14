@@ -16,6 +16,11 @@ namespace FlyingTuna.Components
             return new Entity(this, host, entId, new EntityType(){Identifier = typeId});
         }
 
+        public Entity NewEntity(IHost host, ID typeId)
+        {
+            return NewEntity(host, typeId, 0);
+        }
+
         public void Register<T>()
         {
         }

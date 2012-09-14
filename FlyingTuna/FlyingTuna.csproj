@@ -44,12 +44,17 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Additions\GameImpl\ConsoleSender.cs" />
+    <Compile Include="Additions\Messages\ConnectedMessage.cs" />
+    <Compile Include="Additions\Messages\DisconnectedMessage.cs" />
+    <Compile Include="MessageSource.cs" />
     <Compile Include="Additions\Input\Backend\XnaMouse.cs" />
     <Compile Include="Additions\Input\ButtonState.cs" />
     <Compile Include="Additions\Input\ButtonStateUtil.cs" />
     <Compile Include="Additions\Input\GameMouseState.cs" />
     <Compile Include="Additions\Input\MouseEventArgs.cs" />
     <Compile Include="Additions\Input\SKeys.cs" />
+    <Compile Include="Additions\Messages\ConnectionMessage.cs" />
     <Compile Include="Additions\Metadata\Metadata.cs" />
     <Compile Include="Additions\ResourceCache.cs" />
     <Compile Include="Additions\VarRefs\IVariableContainer.cs" />
@@ -80,6 +85,7 @@
     <Compile Include="Additions\IdenSys\HasIdentifier.cs" />
     <Compile Include="IHost.cs" />
     <Compile Include="Additions\Serialization\LinqExpSerializer.cs" />
+    <Compile Include="MPI\IMessageSource.cs" />
     <Compile Include="MPI\ListenerMultiDebug.cs" />
     <Compile Include="MPI\ListenerMessage.cs" />
     <Compile Include="MPI\ErrorMessage.cs" />
@@ -108,7 +114,6 @@
     <Compile Include="Additions\Serialization\SlimSerializer.cs" />
     <Compile Include="Utils\Extensions\Dictionary\GetOrDefaultExtension.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

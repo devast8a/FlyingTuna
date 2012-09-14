@@ -6,17 +6,17 @@ namespace FlyingTuna.Components
     public class Service
     {
         public readonly Type Type;
-        public readonly PropertyInfo PropertyInfo;
+        public readonly FieldInfo FieldInfo;
 
-        public Service(Type type, PropertyInfo propertyInfo)
+        public Service(Type type, FieldInfo field)
         {
             Type = type;
-            PropertyInfo=propertyInfo;
+            FieldInfo = field;
         }
 
         public void Set(Component component, object service)
         {
-            PropertyInfo.SetValue(component, service, null);
+            FieldInfo.SetValue(component, service);
         }
     }
 }

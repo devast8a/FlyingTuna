@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FlyingTuna.Components
 {
-    [AttributeUsage(AttributeTargets.Property)]
+    [AttributeUsage(AttributeTargets.Field)]
     public class UseServiceAttribute : Attribute
     {
         public readonly Type Type;

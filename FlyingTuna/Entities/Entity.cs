@@ -127,6 +127,21 @@ namespace FlyingTuna.Entities
         }
 
         /// <summary>
+        /// Send a message to an entity through a specified connection.
+        /// </summary>
+        /// <param name="message">The message to send</param>
+        /// <param name="connection">Connection to send the message to</param>
+        public void SendMessage(Message message, Connection connection)
+        {
+            var packet = new EntityMessage(Host, Identifier.IdentifierNumber, message);
+
+            foreach (var con in _connections)
+            {
+                con.WriteData(packet);
+            }
+        }
+
+        /// <summary>
         /// Sends a message locally and remotely at the same time
         /// </summary>
         /// <param name="message">The message to send</param>

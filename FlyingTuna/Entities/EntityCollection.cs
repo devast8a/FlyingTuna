@@ -32,6 +32,11 @@ namespace FlyingTuna.Entities
             Entities.Add(createObject.Identifier.IdentifierNumber, createObject);
         }
 
+        public void RemoveEntity(Entity ent)
+        {
+            Entities.Remove(ent.Identifier.IdentifierNumber);
+        }
+
         public event Action<Entity> OnAddEntity;
         public IEnumerable<Entity> GetList()
         {
