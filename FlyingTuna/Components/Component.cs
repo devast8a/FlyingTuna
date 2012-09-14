@@ -16,13 +16,18 @@ namespace FlyingTuna.Components
             Type = ComponentType.Get(GetType());
         }
 
-        public virtual void OnInitialize(){}
+        public virtual void OnInitialize(IHost host){}
         
         public void Overwrite(VariableReference varRef)
         {
+            ComponentParent.Overwrite(varRef);
+        }
+
+        public void OverwriteLocal(VariableReference varRef)
+        {
             VariableReferenceC value;
-              
-            if(Type.Variables.TryGetValue(varRef.Name, out value))
+
+            if (Type.Variables.TryGetValue(varRef.Name, out value))
             {
                 value.Set(this, varRef);
             }

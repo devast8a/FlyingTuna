@@ -12,7 +12,7 @@ using FlyingTuna.Networking.Packets;
 
 namespace FlyingTuna.Entities
 {
-    public class Entity : MetadataContainer, IVariableContainer
+    public class Entity : MetadataContainer, IVariableContainer, IMessageListener
     {
         private readonly Dictionary<Type, ComponentListener> _listeners = new Dictionary<Type, ComponentListener>();
         private readonly Dictionary<Type, Component> _components = new Dictionary<Type, Component>();
@@ -50,7 +50,7 @@ namespace FlyingTuna.Entities
             return (T)AddImpl(typeof(T));
         }
 
-        private Component AddImpl(Type type)
+        public Component AddImpl(Type type)
         {
             var component = _componentFactory.GetComponent(type);
             _components.Add(component.GetType(), component);
@@ -83,7 +83,7 @@ namespace FlyingTuna.Entities
             }
 
             component.ComponentParent = this;
-            component.OnInitialize();
+            component.OnInitialize(Host);
 
             return component;
         }
@@ -136,7 +136,8 @@ namespace FlyingTuna.Entities
             SendRemoteMessage(message);
         }
 
-        readonly List<Connection> _connections = new List<Connection>(); 
+        readonly List<Connection> _connections = new List<Connection>();
+
         public void SendTo(Connection connection)
         {
             _connections.Add(connection);
@@ -154,7 +155,7 @@ namespace FlyingTuna.Entities
 
             foreach(var component in _components)
             {
-                component.Value.Overwrite(varRef);
+                component.Value.OverwriteLocal(varRef);
             }
         }
     }
