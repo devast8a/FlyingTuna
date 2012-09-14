@@ -47,6 +47,7 @@
     <Compile Include="Additions\GameImpl\ConsoleSender.cs" />
     <Compile Include="Additions\Messages\ConnectedMessage.cs" />
     <Compile Include="Additions\Messages\DisconnectedMessage.cs" />
+    <Compile Include="Additions\Messages\TextError.cs" />
     <Compile Include="MessageSource.cs" />
     <Compile Include="Additions\Input\Backend\XnaMouse.cs" />
     <Compile Include="Additions\Input\ButtonState.cs" />

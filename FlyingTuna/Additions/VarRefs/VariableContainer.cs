@@ -52,7 +52,7 @@ namespace FlyingTuna.Additions.VarRefs
 
         public void Set<T>(string name, T value)
         {
-            GetOrCreate<T>(name).Set(value, this);
+            GetOrCreate<T>(name).Set(this, value);
         }
 
         public void Overwrite(VariableReference varRef)
