@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Reflection;
 
-namespace FlyingTuna.Reflection
+namespace FlyingTuna.Utils.Extensions.ICustomAttributeProvider
 {
     public static class GetCustomAttributeExtension
     {
-        public static T GetCustomAttributeOrNull<T>(this ICustomAttributeProvider provider) where T : Attribute
+        public static T GetCustomAttributeOrNull<T>(this System.Reflection.ICustomAttributeProvider provider) where T : Attribute
         {
             return provider.GetCustomAttributeOrNull<T>(true);
         }
 
-        public static T GetCustomAttributeOrNull<T>(this ICustomAttributeProvider provider, bool inherit) where T : Attribute
+        public static T GetCustomAttributeOrNull<T>(this System.Reflection.ICustomAttributeProvider provider, bool inherit) where T : Attribute
         {
             var attributes = provider.GetCustomAttributes(typeof(T), inherit);
             

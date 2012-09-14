@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using FlyingTuna.Additions.VarRefs;
 using FlyingTuna.MPI;
-using FlyingTuna.Reflection;
+using FlyingTuna.Utils.Extensions.ICustomAttributeProvider;
 
 namespace FlyingTuna.Components
 {

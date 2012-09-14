@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace FlyingTuna.Utils.Extensions
+namespace FlyingTuna.Utils.Extensions.Dictionary
 {
-    public static class DictionaryExtensions
+    public static class GetOrDefaultExtension
     {
         public static TValue GetOrDefault<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key)
         {

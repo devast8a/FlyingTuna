@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq.Expressions;
-using FlyingTuna.Reflection;
+using FlyingTuna.Utils.Extensions.ICustomAttributeProvider;
 
 namespace FlyingTuna.Additions.Serialization
 {

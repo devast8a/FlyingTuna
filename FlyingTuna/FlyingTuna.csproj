@@ -100,13 +100,13 @@
     <Compile Include="Networking\Processors\EntityMessageProcessor.cs" />
     <Compile Include="Networking\Processors\EntityNewProcessor.cs" />
     <Compile Include="Networking\Processors\IPacketProcessor.cs" />
-    <Compile Include="Reflection\GetCustomAttributeExtension.cs" />
+    <Compile Include="Utils\Extensions\ICustomAttributeProvider\GetCustomAttributeExtension.cs" />
     <Compile Include="Additions\Serialization\SerializeOptionsAttribute.cs" />
     <Compile Include="ServiceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Additions\IdenSys\ID.cs" />
     <Compile Include="Additions\Serialization\SlimSerializer.cs" />
-    <Compile Include="Utils\Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Utils\Extensions\Dictionary\GetOrDefaultExtension.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
