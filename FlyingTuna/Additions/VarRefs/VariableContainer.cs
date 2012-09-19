@@ -67,9 +67,9 @@ namespace FlyingTuna.Additions.VarRefs
             return value;
         }
 
-        public VarRef<T> Get<T>(string key)
+        public T Get<T>(string key)
         {
-            return (VarRef<T>)Get(key, typeof(T));
+            return ((VarRef<T>)Get(key, typeof(T))).Value;
         } 
 
         public void Set<T>(string name, T value)
