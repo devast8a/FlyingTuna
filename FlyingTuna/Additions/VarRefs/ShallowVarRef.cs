@@ -6,7 +6,6 @@ namespace FlyingTuna.Additions.VarRefs
     {
         public ShallowVarRef(string name, object value) : base(name)
         {
-            Console.WriteLine("^ Shallow");
             Variable = (T)value;
         }
 

@@ -13,12 +13,10 @@ namespace FlyingTuna.Additions.VarRefs
 
         public VarRef(string name) : base(name, typeof(T))
         {
-            Console.WriteLine("VarRef");
         }
 
         public VarRef(string name, T value) : base(name, typeof(T))
         {
-            Console.WriteLine("VarRef");
             Variable = value;
         }
 
