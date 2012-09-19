@@ -50,6 +50,28 @@ namespace FlyingTuna.Additions.VarRefs
             return (VarRef<T>)GetOrCreate(name, typeof(T));
         }
 
+        public VariableReference Get(string key, Type type)
+        {
+            VariableReference value;
+            if (!_variables.TryGetValue(key, out value))
+            {
+                throw new KeyNotFoundException(key);
+            }
+
+            // Check type
+            if (value.Type != type)
+            {
+                throw new Exception("Yeah this isn't the type you requested.");
+            }
+
+            return value;
+        }
+
+        public VarRef<T> Get<T>(string key)
+        {
+            return (VarRef<T>)Get(key, typeof(T));
+        } 
+
         public void Set<T>(string name, T value)
         {
             GetOrCreate<T>(name).Set(this, value);
