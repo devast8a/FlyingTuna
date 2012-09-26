@@ -38,7 +38,7 @@ namespace FlyingTuna.Additions.VarRefs
                 // Check type
                 if(value.Type != type)
                 {
-                    throw new Exception("Yeah this isn't the type you requested.");
+                    throw new Exception(string.Format("Variable Name= {2}\nRequested type= {0}\nActual Type= {1}", value.Type, type, key));
                 }
             }
             
