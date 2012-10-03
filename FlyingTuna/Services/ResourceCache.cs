@@ -45,7 +45,7 @@ namespace FlyingTuna.Services
             {
                 if (rescache.Loader == null)
                 {
-                    throw new Exception("Called load before setting loader");
+                    throw new Exception(string.Format("Unable to load the resource '{0}' (Type: {1}) as no resource loader has been set.", name, typeof(T)));
                 }
 
                 value = rescache.Loader(name);
