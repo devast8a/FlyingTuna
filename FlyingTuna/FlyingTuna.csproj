@@ -48,6 +48,7 @@
     <Compile Include="Additions\Messages\ConnectedMessage.cs" />
     <Compile Include="Additions\Messages\DisconnectedMessage.cs" />
     <Compile Include="Additions\Messages\TextError.cs" />
+    <Compile Include="Graphics\Image.cs" />
     <Compile Include="MessageSource.cs" />
     <Compile Include="Additions\Input\Backend\XnaMouse.cs" />
     <Compile Include="Additions\Input\ButtonState.cs" />
@@ -57,7 +58,7 @@
     <Compile Include="Additions\Input\SKeys.cs" />
     <Compile Include="Additions\Messages\ConnectionMessage.cs" />
     <Compile Include="Additions\Metadata\Metadata.cs" />
-    <Compile Include="Additions\ResourceCache.cs" />
+    <Compile Include="Services\ResourceCache.cs" />
     <Compile Include="Additions\VarRefs\IVariableContainer.cs" />
     <Compile Include="Additions\VarRefs\ShallowVarRef.cs" />
     <Compile Include="Additions\VarRefs\VariableContainer.cs" />
@@ -109,12 +110,13 @@
     <Compile Include="Networking\Processors\IPacketProcessor.cs" />
     <Compile Include="Utils\Extensions\ICustomAttributeProvider\GetCustomAttributeExtension.cs" />
     <Compile Include="Additions\Serialization\SerializeOptionsAttribute.cs" />
-    <Compile Include="ServiceManager.cs" />
+    <Compile Include="Services\ServiceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Additions\IdenSys\ID.cs" />
     <Compile Include="Additions\Serialization\SlimSerializer.cs" />
     <Compile Include="Utils\Extensions\Dictionary\GetOrDefaultExtension.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

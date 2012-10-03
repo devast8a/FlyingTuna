@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FlyingTuna
+namespace FlyingTuna.Services
 {
     public class ServiceManager
     {

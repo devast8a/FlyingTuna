@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FlyingTuna.Additions
+namespace FlyingTuna.Services
 {
     public class ResourceCache
     {
