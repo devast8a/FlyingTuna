@@ -2,8 +2,17 @@ using System;
 
 namespace FlyingTuna.Components
 {
-    [AttributeUsage(AttributeTargets.Property)]
+    [AttributeUsage(AttributeTargets.Class)]
     public class DependOnAttribute : Attribute
     {
+        public Type Component;
+
+        public DependOnAttribute(Type type)
+        {
+            if(typeof(Component).IsAssignableFrom(type))
+            {
+                Component = type;
+            }
+        }
     }
 }
