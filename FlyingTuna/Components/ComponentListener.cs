@@ -8,24 +8,22 @@ namespace FlyingTuna.Components
 {
     public class ComponentListener
     {
-        public readonly Component Component;
-        public readonly List<Listener> Listeners = new List<Listener>();
+        public readonly Dictionary<Component, Listener> Listeners = new Dictionary<Component, Listener>();
 
-        public ComponentListener(Component component)
+        public ComponentListener()
         {
-            Component = component;
         }
 
-        public void Add(Listener listener)
+        public void Add(Component component, Listener listener)
         {
-            Listeners.Add(listener);
+            Listeners.Add(component, listener);
         }
 
         public void Invoke(IMessageSender sender, Message message)
         {
             foreach(var listener in Listeners)
             {
-                listener.Invoke(Component, sender, message);
+                listener.Value.Invoke(listener.Key, sender, message);
             }
         }
     }

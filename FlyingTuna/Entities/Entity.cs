@@ -61,11 +61,11 @@ namespace FlyingTuna.Entities
 
                 if(!_listeners.TryGetValue(listenerDecl.Key, out listener))
                 {
-                    listener = new ComponentListener(component);
+                    listener = new ComponentListener();
                     _listeners.Add(listenerDecl.Key, listener);
                 }
 
-                listener.Add(listenerDecl.Value);
+                listener.Add(component, listenerDecl.Value);
             }
 
             foreach (var dep in component.Type.Dependancies)
