@@ -55,9 +55,17 @@ namespace FlyingTuna.Entities
             var component = _componentFactory.GetComponent(type);
             _components.Add(component.GetType(), component);
 
-            foreach (var listener in component.Type.Listeners)
+            foreach (var listenerDecl in component.Type.Listeners)
             {
-                _listeners.Add(listener.Key, new ComponentListener(component, listener.Value));
+                ComponentListener listener;
+
+                if(!_listeners.TryGetValue(listenerDecl.Key, out listener))
+                {
+                    listener = new ComponentListener(component);
+                    _listeners.Add(listenerDecl.Key, listener);
+                }
+
+                listener.Add(listenerDecl.Value);
             }
 
             foreach (var dep in component.Type.Dependancies)

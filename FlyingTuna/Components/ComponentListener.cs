@@ -9,17 +9,24 @@ namespace FlyingTuna.Components
     public class ComponentListener
     {
         public readonly Component Component;
-        public readonly Listener Listener;
+        public readonly List<Listener> Listeners = new List<Listener>();
 
-        public ComponentListener(Component component, Listener listener)
+        public ComponentListener(Component component)
         {
-            Component=component;
-            Listener=listener;
+            Component = component;
+        }
+
+        public void Add(Listener listener)
+        {
+            Listeners.Add(listener);
         }
 
         public void Invoke(IMessageSender sender, Message message)
         {
-            Listener.Invoke(Component, sender, message);
+            foreach(var listener in Listeners)
+            {
+                listener.Invoke(Component, sender, message);
+            }
         }
     }
 }
