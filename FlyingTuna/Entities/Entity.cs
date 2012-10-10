@@ -82,7 +82,7 @@ namespace FlyingTuna.Entities
                 variable.Value.Set(component, Container.GetOrCreate(variable.Key, variable.Value.Type));
             }
 
-            component.ComponentParent = this;
+            component.Entity = this;
             component.OnInitialize(Host);
 
             return component;

@@ -8,7 +8,7 @@ namespace FlyingTuna.Components
     public class Component : IVariableContainer
     {
         // Make this immutable
-        public Entity ComponentParent;
+        public Entity Entity;
 
         public readonly ComponentType Type;
         public Component()
@@ -20,7 +20,7 @@ namespace FlyingTuna.Components
         
         public void Overwrite(VariableReference varRef)
         {
-            ComponentParent.Overwrite(varRef);
+            Entity.Overwrite(varRef);
         }
 
         public void OverwriteLocal(VariableReference varRef)
