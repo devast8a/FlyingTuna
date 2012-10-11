@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FlyingTuna.Additions.VarRefs
 {
+    // TODO: Choose a better class name
     public static class VarRefUtil
     {
         static public VariableReference Create(string name, Type type)

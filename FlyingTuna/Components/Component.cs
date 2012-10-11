@@ -7,7 +7,7 @@ namespace FlyingTuna.Components
 {
     public class Component : IVariableContainer
     {
-        // Make this immutable
+        // TODO: Make this immutable
         public Entity Entity;
 
         public readonly ComponentType Type;
@@ -23,6 +23,7 @@ namespace FlyingTuna.Components
             Entity.Overwrite(varRef);
         }
 
+        // TODO: Properly support IVariableContainer
         public IEnumerable<VariableReference> GetVariables()
         {
             throw new NotImplementedException();

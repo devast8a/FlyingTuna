@@ -6,6 +6,7 @@ using System.Text;
 
 namespace FlyingTuna.Additions.VarRefs
 {
+    //TODO try to allow variable containers to use variable references automatically
     public class VariableContainer : IVariableContainer
     {
         public VariableContainer(){}
