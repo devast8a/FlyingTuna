@@ -11,5 +11,7 @@ namespace FlyingTuna
     {
         ServiceManager ServiceManager { get; }
         FactoryManager FactoryManager { get; }
+
+        int HostType{ get; }
     }
 }
