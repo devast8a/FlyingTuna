@@ -70,6 +70,11 @@ namespace FlyingTuna.Additions.VarRefs
             GetOrCreate<T>(name).Set(this, value);
         }
 
+        public void Set<T>(string name, T value, IVariableContainer container)
+        {
+            GetOrCreate<T>(name).Set(container, value);
+        }
+
         public void Overwrite(VariableReference varRef)
         {
             _variables[varRef.Name] = varRef;
