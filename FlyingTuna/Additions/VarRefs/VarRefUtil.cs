@@ -22,5 +22,13 @@ namespace FlyingTuna.Additions.VarRefs
 
             return e;
         }
+
+        public static void ImportInto(IVariableContainer source, IVariableContainer target)
+        {
+            foreach (var variable in source.GetVariables())
+            {
+                target.Overwrite(variable.GetReferenceCopy(source));
+            }
+        }
     }
 }

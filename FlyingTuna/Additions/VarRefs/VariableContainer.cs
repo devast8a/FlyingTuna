@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,16 +12,7 @@ namespace FlyingTuna.Additions.VarRefs
 
         public VariableContainer(VariableContainer parent)
         {
-            Import(parent);
-        }
-
-        // Import all 
-        public void Import(VariableContainer parent)
-        {
-            foreach(var variable in parent._variables)
-            {
-                _variables.Add(variable.Key, variable.Value.GetReferenceCopy(parent));
-            }
+            VarRefUtil.ImportInto(parent, this);
         }
 
         private readonly Dictionary<string, VariableReference> _variables = new Dictionary<string, VariableReference>(); 
@@ -80,6 +72,11 @@ namespace FlyingTuna.Additions.VarRefs
         public void Overwrite(VariableReference varRef)
         {
             _variables[varRef.Name] = varRef;
+        }
+
+        public IEnumerable<VariableReference> GetVariables()
+        {
+            return _variables.Select(v => v.Value);
         }
     }
 }

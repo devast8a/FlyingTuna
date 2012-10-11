@@ -23,6 +23,11 @@ namespace FlyingTuna.Components
             Entity.Overwrite(varRef);
         }
 
+        public IEnumerable<VariableReference> GetVariables()
+        {
+            throw new NotImplementedException();
+        }
+
         public void OverwriteLocal(VariableReference varRef)
         {
             VariableReferenceC value;

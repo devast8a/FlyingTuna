@@ -181,5 +181,10 @@ namespace FlyingTuna.Entities
                 component.Value.OverwriteLocal(varRef);
             }
         }
+
+        public IEnumerable<VariableReference> GetVariables()
+        {
+            return Container.GetVariables();
+        }
     }
 }
