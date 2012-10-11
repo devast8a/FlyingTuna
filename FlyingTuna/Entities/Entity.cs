@@ -9,6 +9,7 @@ using FlyingTuna.Components;
 using FlyingTuna.MPI;
 using FlyingTuna.Networking;
 using FlyingTuna.Networking.Packets;
+using Microsoft.Xna.Framework;
 
 namespace FlyingTuna.Entities
 {
@@ -185,6 +186,11 @@ namespace FlyingTuna.Entities
         public IEnumerable<VariableReference> GetVariables()
         {
             return Container.GetVariables();
+        }
+
+        public void Set<T>(string name, T value)
+        {
+            Container.Set(name, value, this);
         }
     }
 }
